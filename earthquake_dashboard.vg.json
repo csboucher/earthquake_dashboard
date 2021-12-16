@@ -1,0 +1,84 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "A dashboard with cross-highlighting.",
+  "data": {
+  "name": "earthquakes",
+  "url": "data/earthquakes_centrury.csv",
+  "format": {"type": "csv", "parse": {"mag": "number", "depth": "number", "time": "date"}}
+  },
+  "vconcat": [
+    {
+      "layer": [{
+        "width": 630,
+        "height": 220,
+        "mark": "rect",
+        "encoding": {
+          "x": {
+            "bin": {"maxbins": 10},
+            "field": "depth"
+          },
+          "y": {
+            "bin": {"maxbins": 10},
+            "field": "mag"
+          },
+          "color": {
+            "aggregate": "count",
+            "legend": {
+              "title": "All Earthquake Count",
+              "direction": "horizontal",
+              "gradientLength": 120
+            }
+          }
+        }
+      }, {
+        "transform": [{
+          "filter": {"param": "pts"}
+        }],
+        "mark": "point",
+        "encoding": {
+          "x": {
+            "bin": {"maxbins": 10},
+            "field": "depth"
+          },
+          "y": {
+            "bin": {"maxbins": 10},
+            "field": "mag"
+          },
+          "size": {
+            "aggregate": "count",
+            "legend": {"title": "Selected Category Count"}
+          },
+          "color": {
+            "value": "#666"
+          }
+        }
+      }]
+    }, {
+      "width": 630,
+      "height": 220,
+      "mark": "bar",
+      "params": [{
+        "name": "pts",
+        "select": {"type": "point", "encodings": ["x"]}
+      }],
+      "encoding": {
+        "x": {"timeUnit": "year",
+          "field": "time", "axis": {"labelAngle": -40}},
+        "y": {"aggregate": "count"},
+        "color": {
+          "condition": {
+            "param": "pts",
+            "value": "steelblue"
+          },
+          "value": "grey"
+        }
+      }
+    }
+  ],
+  "resolve": {
+    "legend": {
+      "color": "independent",
+      "size": "independent"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <title>Polis Plot</title>
+</head>
+<body>
+<center>
+    <h5>Hypothesis: It's all about the Greeks.</h5>
+</center>
+
+
+</body>
+<!--- Observe there are data collected from
+# https://github.com/simonepri/geo-maps
+# presented in this assignment. --->
+
+<div id="earthquakes_dashboard"></div>
+
+
+
+<script>
+    const spec_earthquakes = "earthquake_dashboard.vg.json";
+    vegaEmbed("#earthquake_dashboard", spec_earthquakes)
+        .then(result => console.log(result))
+        .catch(console.warn);
+
+
+</script>
+
+</html>

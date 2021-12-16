@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+    <title>EARZ Earthquakes</title>
+</head>
+<body>
+<center>
+    <h4>A Century of Earthquakes in The East African Rift Zone</h4>
+    <h5>Hypothesis: The earthquakes in the East African Rift System are shallow (less than 25km) and have seismic variations due to the volcanism in the area. </h5>
+</center>
+
+
+</body>
+<!--- Observe there are data collected from
+# https://github.com/simonepri/geo-maps
+# presented in this assignment. --->
+
+<div id="earthquakes_dashboard"></div>
+<div id="earthquakes_scatter"></div>
+
+<h5>There are many earthquakes that are at a 33km depth which is slightly deeper than expected but is still reasonable for
+    the shallow lithosphere in the rift. There are a few approximately 5.0 magnitude outliers that happened at a depth
+    greater than 33km depth. The seismicity does vary but this could also be from an increase in seismometers deployed. </h5>
+
+<script>
+
+    const spec_dashboard = "earthquake_dashboard.vg.json";
+    vegaEmbed("#earthquakes_dashboard", spec_dashboard)
+        .then(result => console.log(result))
+        .catch(console.warn);
+
+    const spec_earthquake = "earthquake_dashboard_lite.vg.json";
+    vegaEmbed("#earthquakes_scatter", spec_earthquake)
+        .then(result => console.log(result))
+        .catch(console.warn);
+
+
+</script>
+
+</html>
